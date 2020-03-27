@@ -69,6 +69,7 @@ public class Virus extends Organism {
     }
 
     public int myHashCode() {
+
         String qwerty = "qwertasdfgzxcvbyuiophjklnm";
         char[] qweArray = new char[qwerty.length()];
         for (int i = 0; i < qweArray.length; i++) {
@@ -124,7 +125,7 @@ public class Virus extends Organism {
             }
         }
 
-        int result = nameIndex + aggrIndex + spreadIndex + markIndex;
+        int result = 3*nameIndex + 5*aggrIndex + 7*spreadIndex +13*markIndex;
 
         return result;
     }
