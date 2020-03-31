@@ -5,13 +5,31 @@ public class Virus extends Organism {
     private String aggression;
     private String spreadingMethod;
     private String mark;
+    private int mutationSpeed;
 
-    public Virus(boolean isLife, boolean isTouch, String name, String aggression, String spreadingMethod, String mark) {
+    public Virus(boolean isLife, boolean isTouch, String name, String aggression, int mutationSpeed, String spreadingMethod, String mark) {
         super(isLife, isTouch);
         this.name = name;
         this.aggression = aggression;
+        this.mutationSpeed = mutationSpeed;
         this.spreadingMethod = spreadingMethod;
         this.mark = mark;
+    }
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+
+    public int getMutationSpeed() {
+        return mutationSpeed;
+    }
+
+    public void setMutationSpeed(int mutationSpeed) {
+        this.mutationSpeed = mutationSpeed;
     }
 
     public void mark(String mark) {
@@ -80,7 +98,6 @@ public class Virus extends Organism {
         for (int i = 0; i < nameArray.length; i++) {
             nameArray[i] = name.charAt(i);
         }
-
         int count = 2;// число, используемое для выбора буквы из массива поля
         if (nameArray.length > count) {
             count = nameArray.length - 2;
