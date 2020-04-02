@@ -147,4 +147,23 @@ public class Virus extends Organism {
 
         return result;
     }
+
+    public String virusCondition(Animal animal) {
+        String str = "";
+        if (animal.getIsInfection()) {
+            if (this.mutationSpeed < 3 && animal.infectionProbability() < 1) {
+                str = "Passive condition";
+                return str;
+            } else if (this.mutationSpeed >= 3 && animal.infectionProbability() >= 1) {
+                str = "Aggressive condition";
+                return str;
+            } else {
+                str = "Floating condition";
+                return str;
+            }
+        } else {
+            str = "Organism has not infection";
+            return str;
+        }
+    }
 }

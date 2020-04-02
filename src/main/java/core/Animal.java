@@ -1,6 +1,6 @@
 package core;
 
-public class Animal extends Organism implements Infectable {
+public class Animal extends Organism implements Infectable, Comparable<Animal> {
     private String type;
     private int immunityLevel;
     private String methodOfFoodExtraction;
@@ -59,7 +59,7 @@ public class Animal extends Organism implements Infectable {
 
     @Override
     public double infectionProbability() {
-        double mofe = 0, isc;
+        double mofe = 0;
         switch (this.methodOfFoodExtraction) {
             case "herbivorous":
                 mofe = 1;
@@ -71,6 +71,7 @@ public class Animal extends Organism implements Infectable {
                 mofe = 3;
                 break;
         }
+        double isc;
         if (!this.isCommunity) {
             isc = 0.5;
         } else {
@@ -84,8 +85,13 @@ public class Animal extends Organism implements Infectable {
 
     @Override
     public String lookInfectionProbability() {
-        String str = "His Level of immunity is high you are unlikely to get infected ";
+        String str;
+        if (this.isInfection) {
+            str = "The body is already infected";
+            return str;
+        }
         if (infectionProbability() < 0.5) {
+            str = "His Level of immunity is high you are unlikely to get infected ";
             return str;
         } else if (infectionProbability() > 0.5 && infectionProbability() < 1) {
             str = "His Level of immunity is average the probability of getting infected is average ";
@@ -96,4 +102,24 @@ public class Animal extends Organism implements Infectable {
         }
     }
 
+    @Override
+    public int compareTo(Animal t1) {
+        int c;
+        if (this.isInfection) {
+            c = 1;
+        } else {
+            c = 0;
+        }
+        int k;
+        if (t1.isInfection) {
+            k = 1;
+        } else {
+            k = 0;
+        }
+        if (this.isInfection != t1.isInfection) {
+            return c - k;
+        } else {
+            return 0;
+        }
+    }
 }
